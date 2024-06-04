@@ -79,7 +79,7 @@ export default {
   components: {},
   computed: {
     service() {
-      return this.$store.state.activeService.name
+      return this.$route.name
     },
   },
 
@@ -101,11 +101,15 @@ export default {
       this.$store.dispatch('access/logout')
     },
     showNote() {
-      this.$notify({
-        group: 'foo',
-        title: 'Important message',
-        text: 'Hello user! This is a notification!',
+      // this.$notify({
+      //   group: 'foo',
+      //   title: 'Important message',
+      //   text: 'Hello user! This is a notification!',
+      // })
+      this.$modal.show({
+        modalName: 'edit service',
       })
+      console.log('modal')
     },
   },
 }

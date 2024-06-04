@@ -1,5 +1,5 @@
 <template>
-  <v-card outlined>
+  <v-card to="leads" outlined>
     <v-card-title class="primary--text">Leads</v-card-title>
     <v-card-subtitle
       ><v-chip small label color="red" class="white--text">

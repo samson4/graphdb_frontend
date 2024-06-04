@@ -84,5 +84,8 @@
 export default {
   layout: 'default',
   name: 'IndexPage',
+  created() {
+    this.$router.push('login')
+  },
 }
 </script>

@@ -10,7 +10,7 @@
           xs="12"
           :key="index"
         >
-          <v-card outlined class="">
+          <v-card :to="item.to" outlined class="">
             <div class="justify-center align-center">
               <div class="primary--text">
                 <v-card-actions class="d-flex justify-space-between mx-auto">
@@ -70,10 +70,20 @@ export default {
   data() {
     return {
       modules: [
-        { icon: 'mdi-contacts', name: 'Contacts', quantity: '123' },
-        { icon: 'mdi-target', name: 'leads', quantity: '456' },
-        { icon: 'mdi-plus', name: 'Customers', quantity: '789' },
-        { icon: 'mdi-plus', name: 'Pending Appointments', quantity: '789' },
+        {
+          icon: 'mdi-contacts',
+          name: 'Contacts',
+          quantity: '123',
+          to: 'contacts',
+        },
+        { icon: 'mdi-target', name: 'leads', quantity: '456', to: 'leads' },
+        { icon: 'mdi-plus', name: 'Customers', quantity: '789', to: null },
+        {
+          icon: 'mdi-plus',
+          name: 'Pending Appointments',
+          quantity: '789',
+          to: null,
+        },
       ],
     }
   },

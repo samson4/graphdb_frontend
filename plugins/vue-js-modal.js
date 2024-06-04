@@ -1,12 +1,16 @@
-// // plugins/vue-js-modal.js
-// import Vue from 'vue'
-// import VModal from 'vue-js-modal/dist/ssr.nocss'
+import Modal from "vue-js-modal";
+import Vue from "vue";
+import "./modal.css";
 
-// import 'vue-js-modal/dist/styles.css'
-
-// Vue.use(VModal, { ... })
-
-
-// export default function(_, inject) {
-//   inject('modal', VModal)
-// }
+export default function () {
+  Vue.use(Modal, {
+    dynamic: true,
+    dynamicDefaults: {
+      height: "auto",
+      width: "100%",
+      scrollable: true,
+      adaptive: true,
+      clickToClose: true,
+    },
+  });
+}

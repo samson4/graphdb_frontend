@@ -12,7 +12,7 @@
     <template v-slot:append>
       <v-divider />
       <v-list rounded dense>
-        <v-list-item @click="backToService()" class="py-0">
+        <v-list-item @click="showProfile()" class="py-0">
           <v-list-item-avatar>
             <v-img
               alt="avatar"
@@ -31,6 +31,7 @@
 <script>
 import SideMenu from '~/components/menu/side-menu'
 import AbolLogo from '../Icons/AbolLogo.vue'
+import profileInfoVue from '../profile-info.vue'
 
 export default {
   components: {
@@ -38,9 +39,14 @@ export default {
     AbolLogo,
   },
   methods: {
-    backToService() {
-      this.$store.dispatch('removeSavedService')
-      this.$router.push('/')
+    showProfile() {
+      this.$modal.show(
+        profileInfoVue,
+        {
+          modalName: 'Profile',
+        },
+        { width: '500' }
+      )
     },
   },
   created() {

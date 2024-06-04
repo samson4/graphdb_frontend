@@ -1,7 +1,6 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
-  
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - AbolCMS',
@@ -23,7 +22,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~/plugins/vue-notification.js', ssr: true }
+    '~/plugins/vue-notification.js',
+    { src: '~/plugins/vue-js-modal', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
