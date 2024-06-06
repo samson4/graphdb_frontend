@@ -1,8 +1,5 @@
 <template>
   <v-app-bar class="navbar pa-0" color="white" flat fixed light app>
-    <v-icon @click="showNote" class="headline px-3 font-weight-bold"
-      >mdi-plus</v-icon
-    >
     <div class="headline font-weight-bold">
       {{ service ? service : 'Dashboard' }}
     </div>
@@ -47,19 +44,6 @@
           </v-list>
           <v-divider style="background-color: #dce4f3" />
 
-          <v-list dense class="py-1">
-            <v-list-item
-              v-for="(item, index) in otherMenus"
-              :key="index"
-              :to="item.to"
-              class="tile px-0"
-            >
-              <v-list-item-content class="content px-4">
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-
           <v-divider style="background-color: #dce4f3" />
           <v-list dense class="py-1">
             <v-list-item class="tile px-0" @click="logout">
@@ -84,32 +68,12 @@ export default {
   },
 
   data() {
-    return {
-      // service: this.$store.state.activeService.name,
-      // full_name: this.$store.state.access.profile.full_name || 'User',
-      // userroles: this.$store.state.access.profile.roles || 'Role',
-      // menu: false,
-      // otherMenus: this.$store.state.otherMenus || [],
-      // service: {},
-    }
+    return {}
   },
-  // created() {
-  //   this.service = this.$store.state.activeService
-  // },
+
   methods: {
     logout() {
       this.$store.dispatch('access/logout')
-    },
-    showNote() {
-      // this.$notify({
-      //   group: 'foo',
-      //   title: 'Important message',
-      //   text: 'Hello user! This is a notification!',
-      // })
-      this.$modal.show({
-        modalName: 'edit service',
-      })
-      console.log('modal')
     },
   },
 }

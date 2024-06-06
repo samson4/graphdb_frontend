@@ -9,7 +9,7 @@
         </v-col>
         <v-col>
           <v-row
-            ><v-col cols="12">
+            ><v-col cols="3">
               <v-autocomplete
                 outlined
                 :items="items"
@@ -24,17 +24,20 @@
                 style="max-width: 250px; max-height: 10px"
                 theme="light"
                 auto-select-first
-              ></v-autocomplete> </v-col
+              ></v-autocomplete>
+            </v-col>
+            <v-col cols="3"><AssignedToFilter /> </v-col
           ></v-row>
         </v-col>
       </div>
 
       <v-data-table
+        v-model="selectedContact"
         v-show="!firstLoad"
         :headers="tableheader"
         :items="contacts"
         :key="contacts.id"
-        :options.sync="options"
+        :item-value="contacts.id"
         server-items-length="25"
         loading="false"
         loader-height="2"
@@ -45,7 +48,9 @@
       >
         <template v-slot:[`item.name`]="{ item }">
           <div
-            @click="$router.push(`/contacts/${item.id}`)"
+            @click="
+              $router.push(`/contacts/${item.id}/contact-details/overview`)
+            "
             style="cursor: pointer"
           >
             <v-avatar size="30"
@@ -77,17 +82,38 @@
             <v-icon size="large" @click="editItem(item)">
               mdi-pencil-outline
             </v-icon>
+            <v-icon size="large"> mdi-dots-vertical </v-icon>
           </div>
         </template>
       </v-data-table>
+    </v-card>
+
+    <v-card flat class="mt-6" v-if="selectedContact.length">
+      <div class="d-flex justify-center ma-2">
+        <div class="ma-2 opacity-50">{{ selectedContact.length }} Selected</div>
+        <div class="ma-2"><v-btn outlined color="primary">Export</v-btn></div>
+        <div class="ma-2">
+          <v-btn outlined color="primary">Create lead</v-btn>
+        </div>
+        <div class="ma-2"><v-btn outlined color="error">Delete</v-btn></div>
+        <div class="ma-2">
+          <v-btn outlined @click="selectedContact = []" color="primary"
+            >Cancel</v-btn
+          >
+        </div>
+      </div>
     </v-card>
   </v-container>
 </template>
 
 <script>
 import EditContact from './contacts/edit-contact.vue'
+import AssignedToFilter from './contacts/assigned-to.vue'
 export default {
   layout: 'center-full',
+  components: {
+    AssignedToFilter,
+  },
   props: {
     title: {
       type: String,
@@ -112,6 +138,7 @@ export default {
   },
   data() {
     return {
+      selectedContact: [],
       items: [
         {
           id: 1,
