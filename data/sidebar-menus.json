@@ -1,47 +1,15 @@
 [
-    {
-      "name": "Dashboard",
-      "icon":"mdi-chart-pie",
-      "to":"/dashboard"
-    },
-    {
-        "name": "Contacts",
-        "icon":"mdi-contacts",
-        "to":"/contacts"
-      },
-      {
-        "name": "Leads",
-        "icon":"mdi-target",
-        "to":"/leads"
-      },
-      {
-        "name": "Solutions",
-        "icon":"mdi-barcode-scan",
-        "to":"/solutions"
-      },
-      {
-        "name": "Tasks",
-        "icon":"mdi-check-decagram-outline",
-        "to":"/tasks"
-      },
-      {
-        "name":"Sales",
-        "icon":"mdi-ticket-outline",
-        "to":"/sales"
-      },
-      {
-        "name": "Tickets",
-        "icon":"mdi-ticket-outline",
-        "to":"/tickets"
-      },
+    
       {
         "name": "File Storage",
         "icon":"mdi-file-multiple-outline",
         "to":"/file-storage"
       },
+     
       {
-        "name": "Knowledge Base",
+        "name": "namespace",
         "icon":"mdi-archive-search-outline",
-        "to":"knowledge-base"
+        "to":"namespace"
       }
+
 ]

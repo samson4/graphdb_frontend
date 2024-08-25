@@ -11,6 +11,7 @@
           <v-row
             ><v-col cols="3">
               <v-autocomplete
+                v-if="showHeaders"
                 outlined
                 :items="items"
                 item-text="title"
@@ -26,8 +27,15 @@
                 auto-select-first
               ></v-autocomplete>
             </v-col>
-            <v-col cols="3"><AssignedToFilter /> </v-col
-          ></v-row>
+            <v-col cols="3" v-if="showHeaders"> <AssignedToFilter /> </v-col>
+            <v-col>
+              <v-row>
+                <v-card-title>
+                  <v-btn color="primary">Import</v-btn>
+                </v-card-title></v-row
+              >
+            </v-col>
+          </v-row>
         </v-col>
       </div>
 
@@ -35,7 +43,7 @@
         v-model="selectedContact"
         v-show="!firstLoad"
         :headers="tableheader"
-        :items="contacts"
+        :items="tableItems"
         :key="contacts.id"
         :item-value="contacts.id"
         server-items-length="25"
@@ -60,20 +68,24 @@
                 https://cdn.vuetifyjs.com/images/lists/1.jpg
                     "
             /></v-avatar>
-            {{ item.name }}
+            {{ item.file }}
           </div>
         </template>
-        <template v-slot:[`item.email`]="{ item }">
+        <template v-slot:[`item.named_graphid`]="{ item }">
           <div>
-            <v-icon class="me-2" size="medium"> mdi-email-outline </v-icon>
-            {{ item.email }}
+            {{ item.named_graphid }}
           </div>
-        </template>
-        <template v-slot:[`item.phone`]="{ item }">
-          <div>
-            <v-icon class="me-2" size="medium"> mdi-phone-outline </v-icon>
 
-            {{ item.phone }}
+          <v-select
+            style="width: 150px"
+            :items="['graph1', 'graph2', 'None']"
+            v-model="selectedDB"
+          >
+          </v-select>
+        </template>
+        <template v-slot:[`item.size`]="{ item }">
+          <div>
+            {{ item.size }}
           </div>
         </template>
         <template v-slot:item.actions="{ item }">
@@ -115,6 +127,10 @@ export default {
     AssignedToFilter,
   },
   props: {
+    showHeaders: {
+      type: Boolean,
+      default: false,
+    },
     title: {
       type: String,
       default: '',
@@ -138,6 +154,7 @@ export default {
   },
   data() {
     return {
+      selectedDB: '',
       selectedContact: [],
       items: [
         {

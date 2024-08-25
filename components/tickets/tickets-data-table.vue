@@ -4,7 +4,9 @@
       <div class="d-flex">
         <v-col>
           <v-row>
-            <v-card-title>{{ title }}</v-card-title></v-row
+            <v-card-title>
+              <v-btn color="primary">Import</v-btn>
+            </v-card-title></v-row
           >
         </v-col>
       </div>
@@ -23,21 +25,21 @@
         :footer-props="footer_props"
         class="elevation-1"
       >
-        <template v-slot:[`item.name`]="{ item }">
+        <template v-slot:[`item.file`]="{ item }">
           <div>
-            {{ item.name }}
+            {{ item.file }}
           </div>
         </template>
-        <template v-slot:[`item.assigned_to`]="{ item }">
+        <template v-slot:[`item.named_graphid`]="{ item }">
           <div>
-            <v-avatar size="30"
+            <v-menu
               ><img
                 lazy-src="https://picsum.photos/id/11/10/6"
                 src="
                   https://cdn.vuetifyjs.com/images/lists/1.jpg
                       "
-            /></v-avatar>
-            {{ item.assigned_to }}
+            /></v-menu>
+            {{ item.named_graphid }}
           </div>
         </template>
         <template v-slot:[`item.status`]="{ item }">
